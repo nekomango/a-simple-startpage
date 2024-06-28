@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/b2b11d6c26.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image" href="./favicon.ico">
+    <link rel="stylesheet" href="./style/sidebar.css">
+    <link rel="stylesheet" href="./style/changeBG.css">
+    <link rel="stylesheet" href="./style/toolbar.css">
+    <title>Home</title>   
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            background-position: center;
+            background-color: rgba(39, 39, 65);
+            transition: background-image 0.5s ease;
+            align-items: center;
+        }
+        #toggleButton {
+            outline: none;
+            border: none;
+            border-radius: 25px;
+            background-color: var(--main-bg2);
+            color: rgb(255, 255, 255);
+            font-size: 18px;
+        } 
+        .search-bar{
+            display: flex;
+            max-width: 960px;
+            margin: 70px auto 0 auto;
+            height: auto;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: nowrap;
+        }
+        .hidden{
+            display: none;
+        }
+        .search-text{
+            position: relative;
+            width: 560px;
+            height: 45px;
+            border-radius: 30px;
+        }
+        
+        #container {
+            width: 80%;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 70px auto 0 auto;
+            }
+        .shortcut {
+            width: 80px;
+            height: 80px;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            text-decoration: none;
+            color: black;
+        }
+        .shortcut img {
+            width: 32px;
+            height: 32px;
+        }
+        .shortcut span {
+        margin-top: 10px;
+        font-size: 12px;
+        }
+    </style>
+</head>
+<body onload="startTime(), getDate()">
+    <div id="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <br>
+        <a id="openModalBtn">更換背景</a>
+        <!-- 可以添加更多链接 -->
+    </div>
+    <div id="overlay" class="overlay"></div>
+
+    <span id="openSidebarBtn" onclick="openNav()"><i class="fa-solid fa-bars"></i></span>
+
+    <div id="modal">
+        <div id="modalContent">
+            <span class="close">&times;</span>
+            <p>將圖片拖放到此處以更換背景</p>
+            <div id="drop-area">拖放區域</div>
+            <button id="resetBG-btn" onclick="resetBG()"><i class="fa-solid fa-arrows-rotate"></i>重置背景</button>
+        </div>
+    </div>
+    <br>
+    <h1 class="date" id="date" style="font-size: xx-large; color: azure; text-align: center;"></h1>
+    <br>
+    <h1 class="clock" id="clock" style="font-size: xx-large; color: azure; text-align: center;"></h1>
+
+    <div class="search-bar">
+        <button id="toggleButton" onclick="toggleText()"><i class="fa-solid fa-arrows-rotate"></i></button>
+        <form  id="google" action="https://www.google.com/search" method="get">
+        <input class="search-text" type="text" placeholder="Google" name="q" required>
+        </form> 
+        <form class="hidden" id="yt" action="https://www.youtube.com/results" method="get">
+          <input class="search-text" type="text" placeholder="Youtube" name="search_query" required>
+        </form>       
+    </div> 
+
+    <nav id="tool-bar">
+        <button onclick="updateShortcuts('common')">常用</button>
+        <button onclick="updateShortcuts('leisure')">休閒</button>
+        <button onclick="updateShortcuts('games')">遊戲</button>
+        <button onclick="updateShortcuts('learning')">學習</button>
+        <button onclick="updateShortcuts('other')">其他</button>
+        <div class="animation"></div>
+    </nav>
+
+    <div id="container"></div>
+
+</body>
+</html>
+
+<!--側邊導航欄-->
+<script src="./script/sideNav.js"></script>
+<!--clock-->
+<script src="./script/clock.js"></script>
+<!--更換背景-->
+<script src="./script/changeBG.js"></script>
+
+<script src="./script/shortcut.js"></script>
+
+<!--switch search bar-->
+<script>
+function toggleText() 
+{
+  const ggl = document.getElementById("google");
+  const yt = document.getElementById("yt");
+  const toggleButton = document.getElementById("toggleButton");
+
+  if (ggl.style.display !== "none") {
+    ggl.style.display = "none";
+    yt.style.visibility = "visible";
+    ggl.style.visibility = "collapse";
+    yt.style.display = "block";
+  } else {
+    ggl.style.display = "block";
+    ggl.style.visibility = "visible";
+    yt.style.visibility = "collapse";
+    yt.style.display = "none";
+  }
+}
+</script>
