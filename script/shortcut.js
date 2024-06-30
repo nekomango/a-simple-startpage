@@ -1,11 +1,14 @@
 const shortcutsData = {
     common: [
         { url: 'https://www.google.com', name: 'Google' },
-        { url: 'https://www.youtube.com', name: 'YouTube' }
+        { url: 'https://www.youtube.com', name: 'YouTube' },
+        { url: 'https://www.bilibili.com/index.html', name: 'bilibili' },
+        { url: 'https://chatgpt.com/', name: 'ChatGPT' }
     ],
     leisure: [
         { url: 'https://www.netflix.com', name: 'Netflix' },
-        { url: 'https://www.spotify.com', name: 'Spotify' }
+        { url: 'https://www.spotify.com', name: 'Spotify' },
+        { url: 'https://ani.gamer.com.tw/', name: '動畫瘋' }
     ],
     games: [
         { url: 'https://store.steampowered.com', name: 'Steam' },
@@ -17,7 +20,8 @@ const shortcutsData = {
     ],
     other: [
         { url: 'https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5', name: 'Wikipedia' },
-        { url: 'https://www.reddit.com', name: 'Reddit' }
+        { url: 'https://www.reddit.com', name: 'Reddit' },
+        { url: 'https://x.com/home', name: 'Twitter' }
     ]
 };
 
@@ -28,7 +32,7 @@ function updateShortcuts(category) {
         const a = document.createElement('a');
         a.href = shortcut.url;
         a.className = 'shortcut';
-        a.innerHTML = `<img src="https://www.google.com/s2/favicons?domain=${new URL(shortcut.url).hostname}" alt="${shortcut.name}"><span>${shortcut.name}</span>`;
+        a.innerHTML = `<img src="https://www.google.com/s2/favicons?domain=${new URL(shortcut.url).hostname}" alt="${shortcut.name}"><span>${shortcut.name}</span>`; // get icon
         container.appendChild(a);
     });
 }
